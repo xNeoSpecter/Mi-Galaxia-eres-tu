@@ -226,7 +226,7 @@ for(let i=0;i<phraseCount;i++){
       depthWrite: false
     });
     spr = new THREE.Sprite(imgMaterial);
-    spr.scale.set(6, 6, 1); // ajusta el tamaño de la imagen
+    spr.scale.set(4, 4, 1); // ajusta el tamaño de la imagen
   } else {
     // Texto normal
     const text = phrases[i % phrases.length];
@@ -277,7 +277,7 @@ function makeHaloTexture(size=1024, inner=0.45){
   grd.addColorStop(1,'rgba(0,0,0,0)');
   g.fillStyle=grd; g.fillRect(0,0,size,size); const tex=new THREE.CanvasTexture(c); tex.needsUpdate=true; return tex;
 }
-const haloPlane=new THREE.Mesh(new THREE.PlaneGeometry(320,320), new THREE.MeshBasicMaterial({ map:makeHaloTexture(1024,0.45), transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, opacity:0.9 }));
+const haloPlane=new THREE.Mesh(new THREE.PlaneGeometry(320,320), new THREE.MeshBasicMaterial({ map:makeHaloTexture(1024,0.45), transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, opacity:0.5 }));
 haloPlane.rotation.x=-Math.PI/2; haloPlane.renderOrder=0.2; scene.add(haloPlane);
 
 let tw = 0;
