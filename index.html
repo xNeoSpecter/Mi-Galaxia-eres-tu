@@ -299,22 +299,23 @@ function animate(){
   let avg = 0;
   for(let i=0;i<dataArray.length;i++){ avg += dataArray[i]; }
   avg /= dataArray.length;
-  const scaleFactor = 1 + avg/200;
-  
+
   // Escala con la música
-photonRing.scale.set(scaleFactor, scaleFactor, 1);
+  const scaleFactor = 1 + avg/200;
+  photonRing.scale.set(scaleFactor, scaleFactor, 1);
 
-// Color rosa dinámico
-const hue = 330/360; // rosa fucsia
-const saturation = 1; 
-const lightness = 0.5 + avg/512; // sube el brillo con el volumen
-photonRing.material.color.setHSL(hue, saturation, lightness);
+  // Color rosa/neón dinámico según música
+  const hue = 330/360; // rosa fucsia
+  const saturation = 1; 
+  const lightness = 0.5 + avg/512; // aumenta el brillo con la música
+  photonRing.material.color.setHSL(hue, saturation, lightness);
 
-// Opacidad extra brillante
-photonRing.material.opacity = 0.6 + Math.min(avg/255,0.4);
+  // Opacidad más intensa según el volumen
+  photonRing.material.opacity = 0.6 + Math.min(avg/255,0.4);
 
   renderer.render(scene, camera);
-} animate();
+}
+  animate();
 
 // ====== HEARTS ======
 const fx = document.getElementById('fx');
