@@ -275,8 +275,18 @@ function animate(){
   for(let i=0;i<dataArray.length;i++){ avg += dataArray[i]; }
   avg /= dataArray.length;
   const scaleFactor = 1 + avg/200;
-  photonRing.scale.set(scaleFactor, scaleFactor, 1);
-  photonRing.material.opacity = 0.7 + Math.min(avg/255,0.3);
+  
+  // Escala con la música
+photonRing.scale.set(scaleFactor, scaleFactor, 1);
+
+// Color rosa dinámico
+const hue = 330/360; // rosa fucsia
+const saturation = 1; 
+const lightness = 0.5 + avg/512; // sube el brillo con el volumen
+photonRing.material.color.setHSL(hue, saturation, lightness);
+
+// Opacidad extra brillante
+photonRing.material.opacity = 0.6 + Math.min(avg/255,0.4);
 
   renderer.render(scene, camera);
 } animate();
