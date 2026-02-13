@@ -214,16 +214,39 @@ function makeTextTexture(text, size=48){
   return new THREE.CanvasTexture(c);
 }
 
-for(let i=0;i<phraseCount;i++){ const text = phrases[i%phrases.length];
-  const tex=makeTextTexture(text,48);
-  const spr=new THREE.Sprite(new THREE.SpriteMaterial({ map:tex, transparent:true, depthWrite:false }));
-  spr.isPhrase=true;
-  const perArm=phraseCount/arms; const ang=(i%perArm)*(Math.PI*2/perArm);
-  const armAng=Math.floor(i/perArm)*(Math.PI*2/arms);
-  const dist=Math.pow(i/phraseCount,0.72)*radius;
-  const thickness=Math.pow(1-(dist/radius),2);
-  const x=Math.cos(ang+armAng)*dist, z=Math.sin(ang+armAng)*dist, y=(Math.random()-0.5)*maxH*thickness*.9;
-  spr.position.set(x,y,z); spr.scale.set(20,2.6,1); galaxy.add(spr);
+for(let i=0;i<phraseCount;i++){ 
+  let spr; // sprite que vamos a crear
+
+  // Cada 4, poner una imagen aleatoria
+  if(i % 4 === 0){
+    const imgUrl = images[Math.floor(Math.random() * images.length)];
+    const imgMaterial = new THREE.SpriteMaterial({
+      map: new THREE.TextureLoader().load(imgUrl),
+      transparent: true,
+      depthWrite: false
+    });
+    spr = new THREE.Sprite(imgMaterial);
+    spr.scale.set(18, 18, 1); // ajusta el tamaño de la imagen
+  } else {
+    // Texto normal
+    const text = phrases[i % phrases.length];
+    const tex = makeTextTexture(text, 48);
+    spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent:true, depthWrite:false }));
+    spr.scale.set(20, 2.6, 1);
+  }
+
+  // Posición igual que antes
+  const perArm = phraseCount / arms; 
+  const ang = (i % perArm) * (Math.PI*2 / perArm);
+  const armAng = Math.floor(i / perArm) * (Math.PI*2 / arms);
+  const dist = Math.pow(i / phraseCount, 0.72) * radius;
+  const thickness = Math.pow(1 - (dist / radius), 2);
+  const x = Math.cos(ang + armAng) * dist;
+  const z = Math.sin(ang + armAng) * dist;
+  const y = (Math.random() - 0.5) * maxH * thickness * 0.9;
+
+  spr.position.set(x, y, z);
+  galaxy.add(spr);
 }
 
 // Galaxy stars
