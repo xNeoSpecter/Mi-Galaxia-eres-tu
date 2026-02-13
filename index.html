@@ -279,7 +279,7 @@ function makeHaloTexture(size=1024, inner=0.45){
 }
 const haloPlane=new THREE.Mesh(new THREE.PlaneGeometry(320,320), new THREE.MeshBasicMaterial({ map:makeHaloTexture(1024,0.45), transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, opacity:0.5 }));
 haloPlane.rotation.x=-Math.PI/2; haloPlane.renderOrder=0.2; 
-  haloPlane.position.y = -5;
+  haloPlane.position.y = -25;
   scene.add(haloPlane);
 
 let tw = 0;
