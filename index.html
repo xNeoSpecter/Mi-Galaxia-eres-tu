@@ -192,10 +192,16 @@ images.forEach((img, i) => {
 
   const material = new THREE.SpriteMaterial({
     map: tex,
-    transparent: true
+    transparent: true,
+    depthWrite: false,
+    alphaTest: 0.1
   });
 
+  material.blending = THREE.NormalBlending; // 🔥 importante
+
   const sprite = new THREE.Sprite(material);
+
+  sprite.renderOrder = 1; // 🔥 opcional pero recomendado
 
   const angle = Math.random() * Math.PI * 2;
   const dist = Math.random() * 80;
