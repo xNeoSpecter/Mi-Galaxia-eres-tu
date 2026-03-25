@@ -182,8 +182,10 @@ scene.add(bg);
 
 // Galaxy
 const galaxy = new THREE.Group(); scene.add(galaxy);
+const images = ["IMGs/kiti1.png", "IMGs/kiti2.png", "IMGs/kiti3.png", "IMGs/kiti4.png", "IMGs/kiti5.png", "IMGs/kiti6.png", "IMGs/kiti7.png", "IMGs/kiti8.png"];
 
-  const loader = new THREE.TextureLoader();
+  // 👇
+const loader = new THREE.TextureLoader();
 
 images.forEach((img, i) => {
   const tex = loader.load(img);
@@ -195,7 +197,6 @@ images.forEach((img, i) => {
 
   const sprite = new THREE.Sprite(material);
 
-  // Distribución estilo galaxia
   const angle = Math.random() * Math.PI * 2;
   const dist = Math.random() * 80;
 
@@ -209,8 +210,8 @@ images.forEach((img, i) => {
 
   galaxy.add(sprite);
 });
+
   
-const images = ["IMGs/kiti1.png", "IMGs/kiti2.png", "IMGs/kiti3.png", "IMGs/kiti4.png", "IMGs/kiti5.png", "IMGs/kiti6.png", "IMGs/kiti7.png", "IMGs/kiti8.png"];
 const phrases = ["Mi takito", " Hermosa 💛", "Mi Bebe", "Mi pollito d colores 🌌", "Hermosota ✨", "Lia <3", "Mi Todo", "Me Encantas 🥰", " Lizcita bonita", "Te Amo💛", "Eres inefable", "Me causas limerencia", "El espacio me recuerda a ti 🌠", "Mi Amor", "Mi Mundo", "Mi Niña chiquita bonita", "Mi Sueño", "Mi Pensamiento Favorito"];
 const phraseCount = Math.max(phrases.length * 6, 180);
 const arms = 5, radius = 82, maxH = 22;
